@@ -52,8 +52,10 @@ module LoomioPipe
       # TODO use html2markdown or reverse_markdown to convert from html
       # email
       def cleanup(body)
+        # Get the charset
+        charset = @email.charset || body.charset
         # Decode
-        body = body.decoded
+        body = body.decoded.force_encoding(charset).encode('UTF-8')
         # Remove html tags if the body is in html
         body.gsub!(/<[^>]*>/, '')
         # Remove extra new lines from the top
