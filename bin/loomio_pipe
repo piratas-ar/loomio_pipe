@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+#
+# © 2015 Nicolás Reynolds <fauno@partidopirata.com.ar
+#
+# This file is part of loomio_pipe
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+if ARGV.empty?
+  puts 'Please give me Loomio\'s API URL as first argument.'
+  exit
+end
+
+ENV['LOOMIO_API_URL'] = ARGV[0]
+
+require 'loomio_pipe'
+
+# Read the email piped in
+email = LoomioPipe::Email.new(Mail.new(STDIN.read))
+# Get the comment from email body
+LoomioPipe::Post.new(email).process!
