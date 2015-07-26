@@ -36,7 +36,8 @@ module LoomioPipe
         body: {
           comment: {
             discussion_id: @email.discussion,
-            body: @email.body
+            body: @email.body,
+            uses_markdown: true
           }
         },
         headers: { 'Loomio-User-Id'       => @email.user,
