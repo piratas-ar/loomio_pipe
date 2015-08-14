@@ -57,7 +57,7 @@ module LoomioPipe
         # Decode
         body = body.decoded.force_encoding(charset).encode('UTF-8')
         # Remove html tags if the body is in html
-        body.gsub!(/<[^>]*>/, '')
+        body.gsub!(/<[^>]*>/m, '')
         # Remove extra new lines from the top
         body.gsub!(/\A\n*/m,'')
         # Remove signatures
