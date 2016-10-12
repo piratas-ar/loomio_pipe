@@ -1,5 +1,5 @@
 #
-# © 2015 Nicolás Reynolds <fauno@partidopirata.com.ar
+# © 2015-2016 Nicolás Reynolds <fauno@partidopirata.com.ar>
 #
 # This file is part of loomio_pipe
 #
@@ -18,7 +18,6 @@
 #
 require 'httparty'
 require 'mail'
-require 'cgi'
 require 'loomio_pipe/version'
 require 'loomio_pipe/email'
 
@@ -32,15 +31,22 @@ module LoomioPipe
     end
 
     def process!
-      self.class.post('/v1/comments/',
+      # Emular un POST desde mailin.io
+      self.class.post('/email_processor/',
         body: {
-          comment: {
-            discussion_id: @email.discussion,
-            body: @email.body
+          mailinMsg: {
+            to: [{
+              name: 'loomio',
+              address: @email.to
+            }],
+            from: [{
+              address: @email.from,
+              name: @email.from
+            }],
+            cc: [],
+            text: @email.body
           }
-        },
-        headers: { 'Loomio-User-Id'       => @email.user,
-                   'Loomio-Email-API-Key' => @email.api_key })
+        })
     end
   end
 end

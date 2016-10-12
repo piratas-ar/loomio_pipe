@@ -1,5 +1,5 @@
 #
-# © 2015 Nicolás Reynolds <fauno@partidopirata.com.ar
+# © 2015-2016 Nicolás Reynolds <fauno@partidopirata.com.ar>
 #
 # This file is part of loomio_pipe
 #
@@ -17,5 +17,5 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 module LoomioPipe
-  VERSION = '0.0.2'
+  VERSION = '0.0.3'
 end
