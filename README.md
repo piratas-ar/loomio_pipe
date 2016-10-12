@@ -23,15 +23,15 @@ The address looks like:
 u=1&k=1111111111111111&d=1@your.loomio.in
 ```
 
-Which are processed by a nodejs SMTP server and posted as JSON requests
-to loomio-email-gateway, which posts it on loomio's API.
+Which are processed by a dedicated nodejs SMTP server and posted as JSON
+requests to loomio's API.
 
-`loomio_pipe` on the other hand, receives the email from standard input
+`loomio_pipe` receives the email from any SMTP server via standard input
 and posts it to loomio's API.
 
-To use `loomio_pipe`, you'll need to merge our
-[pipe_to_api][] branch.  This makes Loomio craft Reply-To addresses that
-a regular SMTP server can recognize and pipe to `loomio_pipe`:
+To use `loomio_pipe`, you'll need to merge our [pipe_to_api][] branch.
+This makes Loomio craft Reply-To addresses that your regular SMTP server
+can recognize and pipe to `loomio_pipe`:
 
 ```
 loomio+u=1&k=1111111111111111&d=1@your.loomio.in

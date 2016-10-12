@@ -1,5 +1,5 @@
 #
-# © 2015 Nicolás Reynolds <fauno@partidopirata.com.ar
+# © 2015-2016 Nicolás Reynolds <fauno@partidopirata.com.ar>
 #
 # This file is part of loomio_pipe
 #
@@ -18,7 +18,7 @@
 #
 module LoomioPipe
   class Email
-    attr_reader :email, :user, :discussion, :body, :api_key
+    attr_reader :email, :body, :to, :from
 
     def initialize(email)
       @email = email
@@ -70,12 +70,8 @@ module LoomioPipe
       def process_email_params!
         # Get our address
         address = @email.to.select { |e| e.start_with?('loomio+') }.first
-        # Process the loomio parts from the address
-        parts   = CGI::parse(address.split('@').first.split('+', 2).last)
-
-        @user       = parts['u'].first
-        @api_key    = parts['k'].first
-        @discussion = parts['d'].first
+        @to     = address.split('+', 2).last
+        @from   = @email.from.first
       end
   end
 end
