@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Loomio's reply by email via *nix pipe}
   spec.description   = %q{Loomio's reply by email via *nix pipe}
   spec.homepage      = 'http://github.com/piratas-ar/loomio-pipe'
-  spec.license       = 'GPLv3'
+  spec.license       = 'GPL-3.0'
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
